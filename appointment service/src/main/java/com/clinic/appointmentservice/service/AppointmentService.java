@@ -14,28 +14,18 @@ import org.springframework.transaction.annotation.Transactional;
 public class AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
-//    private final PatientRepository patientRepository;
-//    private final DoctorRepository doctorRepository;
     private final AppointmentMapper appointmentMapper;
 
     public AppointmentService(
             AppointmentRepository appointmentRepository,
-//            PatientRepository patientRepository,
-//            DoctorRepository doctorRepository,
             AppointmentMapper appointmentMapper
     ){
         this.appointmentRepository = appointmentRepository;
-//        this.patientRepository = patientRepository;
-//        this.doctorRepository = doctorRepository;
         this.appointmentMapper = appointmentMapper;
     }
 
     @Transactional
     public AppointmentResponse createAppointment(CreateAppointmentRequest request){
-//        Patient patient = patientRepository.findById(request.getPatientId())
-//                .orElseThrow(()-> new PatientNotFoundException(request.getPatientId()));
-//        Doctor doctor = doctorRepository.findById(request.getDoctorId())
-//                .orElseThrow(()-> new DoctorNotFoundException(request.getDoctorId()));
 
         if(appointmentRepository.existsByDoctorIdAndAppointmentDateTime(
                 request.getDoctorId(), request.getAppointmentDateTime())){
@@ -45,13 +35,12 @@ public class AppointmentService {
             );
         }
         Appointment appointment = new Appointment(
-//                patient,
-//                doctor,
+                request.getPatientId(),
+                request.getDoctorId(),
                 request.getAppointmentDateTime(),
                 request.getStatus(),
                 request.getReason()
         );
-
         Appointment savedAppointment = appointmentRepository.save(appointment);
         return appointmentMapper.toResponse(savedAppointment);
     }

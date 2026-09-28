@@ -30,6 +30,8 @@ services:
       POSTGRES_DB: appointment_db
       POSTGRES_USER: appointment
       POSTGRES_PASSWORD: appointment
+    ports:
+      - "5435:5432"
     volumes:
       - appointment-db-data:/var/lib/postgresql/data
 

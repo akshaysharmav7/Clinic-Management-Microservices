@@ -7,22 +7,19 @@ import java.time.LocalDateTime;
 public class AppointmentResponse {
 
     private final Long id;
-//    private final Long patientId;
-//    private final String patientName;
-//    private final Long doctorId;
-//    private final String doctorName;
+    private final Long patientId;
+    private final Long doctorId;
     private final LocalDateTime appointmentDateTime;
     private final AppointmentStatus status;
     private final String reason;
     private final LocalDateTime createdAt;
     private final LocalDateTime updatedAt;
 
+
     public AppointmentResponse(
             Long id,
-//            Long patientId,
-//            String patientName,
-//            Long doctorId,
-//            String doctorName,
+            Long patientId,
+            Long doctorId,
             LocalDateTime appointmentDateTime,
             AppointmentStatus status,
             String reason,
@@ -30,10 +27,8 @@ public class AppointmentResponse {
             LocalDateTime updatedAt
     ) {
         this.id = id;
-//        this.patientId = patientId;
-//        this.patientName = patientName;
-//        this.doctorId = doctorId;
-//        this.doctorName = doctorName;
+        this.patientId = patientId;
+        this.doctorId = doctorId;
         this.appointmentDateTime = appointmentDateTime;
         this.status = status;
         this.reason = reason;
@@ -45,22 +40,13 @@ public class AppointmentResponse {
         return id;
     }
 
-//    public Long getPatientId() {
-//        return patientId;
-//    }
-//
-//    public String getPatientName() {
-//        return patientName;
-//    }
-//
-//    public Long getDoctorId() {
-//        return doctorId;
-//    }
-//
-//    public String getDoctorName() {
-//        return doctorName;
-//    }
+    public Long getPatientId() {
+        return patientId;
+    }
 
+    public Long getDoctorId() {
+        return doctorId;
+    }
     public LocalDateTime getAppointmentDateTime() {
         return appointmentDateTime;
     }

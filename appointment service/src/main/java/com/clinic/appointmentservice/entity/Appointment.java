@@ -16,14 +16,8 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "patient_id", nullable = false)
-//    private Patient patient;
-//
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "doctor_id", nullable = false)
-//    private Doctor doctor;
+    private Long doctorId;
+    private Long patientId;
 
     @Column(name = "appointment_date_time", nullable = false)
     private LocalDateTime appointmentDateTime;
@@ -47,19 +41,14 @@ public class Appointment {
         // Required by JPA
     }
 
-    public Appointment(
-//            Patient patient,
-//            Doctor doctor,
-            LocalDateTime appointmentDateTime,
-            AppointmentStatus status,
-            String reason
-    ) {
-//        this.patient = patient;
-//        this.doctor = doctor;
+    public Appointment(Long patientId, Long doctorId, LocalDateTime appointmentDateTime, AppointmentStatus status, String reason) {
+        this.patientId = patientId;
+        this.doctorId = doctorId;
         this.appointmentDateTime = appointmentDateTime;
         this.status = status;
         this.reason = reason;
     }
+
 
     public Long getId() {
         return id;
@@ -68,22 +57,22 @@ public class Appointment {
     public void setId(Long id) {
         this.id = id;
     }
-//
-//    public Patient getPatient() {
-//        return patient;
-//    }
-//
-//    public void setPatient(Patient patient) {
-//        this.patient = patient;
-//    }
-//
-//    public Doctor getDoctor() {
-//        return doctor;
-//    }
-//
-//    public void setDoctor(Doctor doctor) {
-//        this.doctor = doctor;
-//    }
+
+    public Long getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(Long doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public Long getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
+    }
 
     public LocalDateTime getAppointmentDateTime() {
         return appointmentDateTime;

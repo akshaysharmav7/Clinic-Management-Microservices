@@ -1,3 +1,13 @@
 spring:
   application:
-    name: appointment service
+    name: appointment-service
+  datasource:
+    url: jdbc:postgresql://localhost:5435/appointment_db
+    username: appointment
+    password: appointment
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 8083

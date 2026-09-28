@@ -1,6 +1,6 @@
 spring:
   application:
-    name: doctor service
+    name: doctor-service
   datasource:
     url: jdbc:postgresql://localhost:5433/doctor_db
     username: doctor
@@ -9,3 +9,5 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+server:
+  port: 8082
