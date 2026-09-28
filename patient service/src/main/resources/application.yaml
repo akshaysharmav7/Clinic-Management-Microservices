@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: patient service
+  datasource:
+    url: jdbc:postgresql://localhost:5434/patient_db
+    username: patient
+    password: patient
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+server:
+  port: 8081

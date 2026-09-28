@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: doctor service
+  datasource:
+    url: jdbc:postgresql://localhost:5433/doctor_db
+    username: doctor
+    password: doctor
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

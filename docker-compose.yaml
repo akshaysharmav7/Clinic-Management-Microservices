@@ -1,0 +1,39 @@
+services:
+  doctor_db:
+    image: postgres:16
+    container_name: doctor_db
+    environment:
+      POSTGRES_DB: doctor_db
+      POSTGRES_USER: doctor
+      POSTGRES_PASSWORD: doctor
+    ports:
+      - "5433:5432"
+    volumes:
+      - doctor-db-data:/var/lib/postgresql/data
+
+  patient_db:
+    image: postgres:16
+    container_name: patient_db
+    environment:
+      POSTGRES_DB: patient_db
+      POSTGRES_USER: patient
+      POSTGRES_PASSWORD: patient
+    ports:
+      - "5434:5432"
+    volumes:
+      - patient-db-data:/var/lib/postgresql/data
+
+  appointment_db:
+    image: postgres:16
+    container_name: appointment_db
+    environment:
+      POSTGRES_DB: appointment_db
+      POSTGRES_USER: appointment
+      POSTGRES_PASSWORD: appointment
+    volumes:
+      - appointment-db-data:/var/lib/postgresql/data
+
+volumes:
+  doctor-db-data:
+  patient-db-data:
+  appointment-db-data:
