@@ -17,25 +17,26 @@ public class AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
     private final AppointmentMapper appointmentMapper;
-    private final PatientClient patientClient;
+    private final PatientValidationService patientValidationService;
     private final DoctorClient doctorClient;
 
     public AppointmentService(
             AppointmentRepository appointmentRepository,
             AppointmentMapper appointmentMapper,
-            PatientClient patientClient,
+            PatientValidationService patientValidationService,
             DoctorClient doctorClient
     ){
         this.appointmentRepository = appointmentRepository;
         this.appointmentMapper = appointmentMapper;
-        this.patientClient = patientClient;
+        this.patientValidationService = patientValidationService;
         this.doctorClient = doctorClient;
     }
 
     @Transactional
     public AppointmentResponse createAppointment(CreateAppointmentRequest request){
 
-        patientClient.getPatientById(request.getPatientId());
+        patientValidationService.validatePatient(request.getPatientId());
+
         doctorClient.getDoctorbyId(request.getDoctorId());
 
         if(appointmentRepository.existsByDoctorIdAndAppointmentDateTime(

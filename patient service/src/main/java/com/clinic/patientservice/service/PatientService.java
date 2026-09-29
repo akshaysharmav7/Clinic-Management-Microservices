@@ -36,6 +36,13 @@ public class PatientService {
     //Get Patient by ID
     @Transactional(readOnly = true)
     public PatientResponse getPatient(Long id){
+//        try {
+//            Thread.sleep(5000); // Intentional delay for circuit-breaker testing
+//        } catch (InterruptedException e) {
+//            Thread.currentThread().interrupt();
+//            throw new RuntimeException("Test delay interrupted", e);
+//        }
+
         Patient patient = patientRepository.findById(id)
                 .orElseThrow(()-> new PatientNotFoundException(id));
         return patientMapper.toResponse(patient);
