@@ -1,5 +1,7 @@
 package com.clinic.appointmentservice.service;
 
+import com.clinic.appointmentservice.client.DoctorClient;
+import com.clinic.appointmentservice.client.PatientClient;
 import com.clinic.appointmentservice.dto.AppointmentResponse;
 import com.clinic.appointmentservice.dto.CreateAppointmentRequest;
 import com.clinic.appointmentservice.entity.Appointment;
@@ -15,17 +17,26 @@ public class AppointmentService {
 
     private final AppointmentRepository appointmentRepository;
     private final AppointmentMapper appointmentMapper;
+    private final PatientClient patientClient;
+    private final DoctorClient doctorClient;
 
     public AppointmentService(
             AppointmentRepository appointmentRepository,
-            AppointmentMapper appointmentMapper
+            AppointmentMapper appointmentMapper,
+            PatientClient patientClient,
+            DoctorClient doctorClient
     ){
         this.appointmentRepository = appointmentRepository;
         this.appointmentMapper = appointmentMapper;
+        this.patientClient = patientClient;
+        this.doctorClient = doctorClient;
     }
 
     @Transactional
     public AppointmentResponse createAppointment(CreateAppointmentRequest request){
+
+        patientClient.getPatientById(request.getPatientId());
+        doctorClient.getDoctorbyId(request.getDoctorId());
 
         if(appointmentRepository.existsByDoctorIdAndAppointmentDateTime(
                 request.getDoctorId(), request.getAppointmentDateTime())){
