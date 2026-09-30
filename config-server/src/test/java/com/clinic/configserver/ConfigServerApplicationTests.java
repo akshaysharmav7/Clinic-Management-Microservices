@@ -1,10 +1,10 @@
-package com.clinic.apigateway;
+package com.clinic.configserver;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiGatewayApplicationTests {
+class ConfigServerApplicationTests {
 
     @Test
     void contextLoads() {
