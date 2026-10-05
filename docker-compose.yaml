@@ -35,6 +35,13 @@ services:
     volumes:
       - appointment-db-data:/var/lib/postgresql/data
 
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    ports:
+      - "16686:16686"
+      - "4318:4318"
+
 volumes:
   doctor-db-data:
   patient-db-data:
