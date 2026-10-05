@@ -26,3 +26,10 @@ spring:
               uri: lb://appointment-service
               predicates:
                 - Path=/api/v1/appointments/**
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics
